@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shareInterpolator="false">
+
+    <!-- 从左上角出现 -->
+    <scale
+        android:duration="500"
+        android:fromXScale="0.1"
+        android:fromYScale="0.1"
+        android:toXScale="1.0"
+        android:toYScale="1.0"
+        android:pivotX="0%"
+        android:pivotY="0%" />
+
+    <!-- 旋转出现 -->
+    <rotate
+        android:duration="500"
+        android:fromDegrees="-180"
+        android:toDegrees="0"
+        android:pivotX="0%"
+        android:pivotY="0%" />
+
+    <!-- 透明度变化 -->
+    <alpha
+        android:duration="500"
+        android:fromAlpha="0.0"
+        android:toAlpha="1.0" />
+
+</set>

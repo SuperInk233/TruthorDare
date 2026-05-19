@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 按钮按下状态 -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <!-- 圆角半径20dp -->
+            <corners android:radius="20dp" />
+            <!-- 按下时的颜色 -->
+            <solid android:color="@color/button_pressed" />
+            <!-- 内边距 -->
+            <padding android:left="16dp"
+                android:top="12dp"
+                android:right="16dp"
+                android:bottom="12dp"/>
+        </shape>
+    </item>
+
+    <!-- 按钮正常状态 -->
+    <item>
+        <shape android:shape="rectangle">
+            <!-- 圆角半径20dp -->
+            <corners android:radius="20dp" />
+            <!-- 正常颜色 -->
+            <solid android:color="@color/button_normal" />
+            <!-- 内边距 -->
+            <padding android:left="16dp"
+                android:top="12dp"
+                android:right="16dp"
+                android:bottom="12dp"/>
+        </shape>
+    </item>
+</selector>

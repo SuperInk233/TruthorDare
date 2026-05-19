@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shareInterpolator="false">
+
+    <!-- 第一步：缩小消失 -->
+    <scale
+        android:duration="500"
+        android:fromXScale="1.0"
+        android:fromYScale="1.0"
+        android:toXScale="0.1"
+        android:toYScale="0.1"
+        android:pivotX="50%"
+        android:pivotY="50%" />
+
+    <!-- 第二步：旋转消失 -->
+    <rotate
+        android:duration="500"
+        android:fromDegrees="0"
+        android:toDegrees="180"
+        android:pivotX="50%"
+        android:pivotY="50%" />
+
+    <!-- 第三步：透明度变化 -->
+    <alpha
+        android:duration="500"
+        android:fromAlpha="1.0"
+        android:toAlpha="0.0" />
+
+</set>

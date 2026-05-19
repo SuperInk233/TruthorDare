@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">真心话大冒险</string>
+    <string name="truth">真心话</string>
+    <string name="dare">大冒险</string>
+    <string name="draw_question">抽取问题</string>
+    <string name="back">返回</string>
+    <string name="reset">重置</string>
+    <string name="remaining_questions">剩余题目</string>
+    <string name="remaining_challenges">剩余挑战</string>
+</resources>

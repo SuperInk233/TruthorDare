@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.truthordare">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="真心话大冒险"
+        android:theme="@style/Theme.TruthOrDare"
+        android:supportsRtl="true">
+
+        <!-- 主界面 -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 真心话界面 -->
+        <activity
+            android:name=".TruthActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <!-- 大冒险界面 -->
+        <activity
+            android:name=".DareActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <!-- 历史记录界面 -->
+        <activity
+            android:name=".HistoryActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <!-- 题库管理界面 -->
+        <activity
+            android:name=".QuestionManagerActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+    </application>
+
+</manifest>

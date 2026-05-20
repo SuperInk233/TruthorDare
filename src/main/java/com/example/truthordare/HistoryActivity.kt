@@ -43,14 +43,28 @@ class HistoryActivity : AppCompatActivity() {
     }
 
     private fun loadHistory() {
-        val mainActivity = this as? MainActivity
-        val history = mainActivity?.getHistory() ?: emptyList()
+        val prefs = getSharedPreferences("TruthOrDarePrefs", MODE_PRIVATE)
+        val historySet = prefs.getStringSet("history", mutableSetOf())?.toMutableSet() ?: mutableSetOf()
 
-        if (history.isEmpty()) {
+        val result = mutableListOf<Triple<Long, String, String>>()
+        for (item in historySet) {
+            val parts = item.split("|")
+            if (parts.size == 3) {
+                val timestamp = parts[0].toLongOrNull() ?: 0L
+                val type = parts[1]
+                val question = parts[2]
+                result.add(Triple(timestamp, type, question))
+            }
+        }
+
+        // 按时间戳降序排序
+        val sortedHistory = result.sortedByDescending { it.first }
+
+        if (sortedHistory.isEmpty()) {
             Toast.makeText(this, "暂无历史记录", Toast.LENGTH_SHORT).show()
         } else {
             historyRecyclerView.layoutManager = LinearLayoutManager(this)
-            historyRecyclerView.adapter = HistoryAdapter(history)
+            historyRecyclerView.adapter = HistoryAdapter(sortedHistory)
         }
     }
 
@@ -66,8 +80,11 @@ class HistoryActivity : AppCompatActivity() {
     }
 
     private fun clearHistory() {
-        val mainActivity = this as? MainActivity
-        mainActivity?.clearHistory()
+        val prefs = getSharedPreferences("TruthOrDarePrefs", MODE_PRIVATE)
+        val editor = prefs.edit()
+        editor.remove("history")
+        editor.apply()
+
         Toast.makeText(this, "历史记录已清空", Toast.LENGTH_SHORT).show()
         loadHistory() // 重新加载
     }

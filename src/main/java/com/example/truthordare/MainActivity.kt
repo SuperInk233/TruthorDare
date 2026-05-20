@@ -45,7 +45,6 @@ class MainActivity : AppCompatActivity() {
         resetButton.setOnClickListener {
             // 重置游戏数据
             resetGameData()
-            Toast.makeText(this, "游戏已重置", Toast.LENGTH_SHORT).show()
         }
 
         historyButton.setOnClickListener {
@@ -73,8 +72,12 @@ class MainActivity : AppCompatActivity() {
         val truthUsed = prefs.getInt("truth_used_count", 0)
         val dareUsed = prefs.getInt("dare_used_count", 0)
 
-        truthProgressText.text = "$truthUsed/100"
-        dareProgressText.text = "$dareUsed/100"
+        // 动态获取题库数量
+        val truthTotal = QuestionRepository.getTruthQuestions(this).size
+        val dareTotal = QuestionRepository.getDareQuestions(this).size
+
+        truthProgressText.text = "$truthUsed/$truthTotal"
+        dareProgressText.text = "$dareUsed/$dareTotal"
     }
 
     /**
@@ -125,31 +128,21 @@ class MainActivity : AppCompatActivity() {
     private fun resetGameData() {
         val prefs = getSharedPreferences("TruthOrDarePrefs", Context.MODE_PRIVATE)
         val editor = prefs.edit()
-
         // 重置已使用计数
         editor.putInt("truth_used_count", 0)
         editor.putInt("dare_used_count", 0)
-
         // 重置已使用题目列表
         editor.remove("truth_used_questions")
         editor.remove("dare_used_questions")
-
         // 重置上次题目
         editor.remove("truth_last_question")
         editor.remove("dare_last_question")
-
         editor.apply()
-
         // 更新显示
-        truthProgressText.text = "0/100"
-        dareProgressText.text = "0/100"
-
+        updateProgress()
         // 清除历史记录
         clearHistory()
-
-        // 重置题目库到默认状态
-        QuestionRepository.resetQuestions(this)
-
-        Toast.makeText(this, "游戏数据和题目库已重置", Toast.LENGTH_SHORT).show()
+        // 重置游戏到默认状态
+        Toast.makeText(this, "游戏数据已重置", Toast.LENGTH_SHORT).show()
     }
 }

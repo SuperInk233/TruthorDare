@@ -122,28 +122,113 @@ class QuestionManagerActivity : AppCompatActivity() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_add_question, null)
         val editText = dialogView.findViewById<EditText>(R.id.questionEditText)
 
+        // 设置提示文本
+        editText.hint = "可输入单个或多个题目，支持以下分隔方式：\n1. 换行分隔\n2. 逗号分隔（,）\n3. 分号分隔（;）\n4. 顿号分隔（、）\n5. 句号分隔（。）"
+
         AlertDialog.Builder(this)
             .setTitle("添加题目")
             .setView(dialogView)
             .setPositiveButton("添加") { dialog, which ->
-                val newQuestion = editText.text.toString()
-                if (newQuestion.isNotBlank()) {
-                    if (currentTab == "truth") {
-                        QuestionRepository.addTruthQuestion(this, newQuestion)
-                        truthQuestions.add(newQuestion)
+                val inputText = editText.text.toString().trim()
+                if (inputText.isNotBlank()) {
+                    val questions = splitAndParseQuestions(inputText)
+
+                    if (questions.isNotEmpty()) {
+                        var successCount = 0
+                        var duplicateCount = 0
+
+                        for (question in questions) {
+                            val trimmedQuestion = question.trim()
+                            if (trimmedQuestion.isNotBlank()) {
+                                val isAdded = if (currentTab == "truth") {
+                                    val isDuplicate = truthQuestions.any { it == trimmedQuestion }
+                                    if (!isDuplicate) {
+                                        QuestionRepository.addTruthQuestion(this, trimmedQuestion)
+                                        truthQuestions.add(trimmedQuestion)
+                                        true
+                                    } else {
+                                        false
+                                    }
+                                } else {
+                                    val isDuplicate = dareQuestions.any { it == trimmedQuestion }
+                                    if (!isDuplicate) {
+                                        QuestionRepository.addDareQuestion(this, trimmedQuestion)
+                                        dareQuestions.add(trimmedQuestion)
+                                        true
+                                    } else {
+                                        false
+                                    }
+                                }
+
+                                if (isAdded) {
+                                    successCount++
+                                } else {
+                                    duplicateCount++
+                                }
+                            }
+                        }
+
+                        // 重新加载当前选项卡
+                        switchTab(currentTab)
+
+                        // 显示添加结果
+                        val message = buildString {
+                            append("成功添加 $successCount 个题目")
+                            if (duplicateCount > 0) {
+                                append("，跳过 $duplicateCount 个重复题目")
+                            }
+                        }
+                        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
                     } else {
-                        QuestionRepository.addDareQuestion(this, newQuestion)
-                        dareQuestions.add(newQuestion)
+                        Toast.makeText(this, "未识别到有效题目", Toast.LENGTH_SHORT).show()
                     }
-                    // 重新加载当前选项卡
-                    switchTab(currentTab)
-                    Toast.makeText(this, "题目已添加", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this, "题目不能为空", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "请输入题目内容", Toast.LENGTH_SHORT).show()
                 }
             }
             .setNegativeButton("取消", null)
             .show()
+    }
+
+    /**
+     * 智能分割和解析题目
+     * 支持多种分隔符：换行、逗号、分号、顿号、句号
+     */
+    private fun splitAndParseQuestions(input: String): List<String> {
+        // 首先按换行分割
+        val lines = input.split("\n")
+
+        val questions = mutableListOf<String>()
+
+        for (line in lines) {
+            val trimmedLine = line.trim()
+            if (trimmedLine.isBlank()) continue
+
+            // 尝试用其他标点符号分割
+            val separators = arrayOf(",", ";", "、", "。", "？", "！")
+            var hasSubSeparator = false
+
+            for (separator in separators) {
+                if (trimmedLine.contains(separator)) {
+                    val subParts = trimmedLine.split(separator)
+                    for (part in subParts) {
+                        val trimmedPart = part.trim()
+                        if (trimmedPart.isNotBlank()) {
+                            questions.add(trimmedPart)
+                        }
+                    }
+                    hasSubSeparator = true
+                    break
+                }
+            }
+
+            // 如果没有其他分隔符，直接添加整行
+            if (!hasSubSeparator) {
+                questions.add(trimmedLine)
+            }
+        }
+
+        return questions
     }
 
     data class QuestionItem(val number: Int, val question: String, val type: String)

@@ -44,6 +44,10 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
+        <activity android:name=".LoveMainActivity" android:exported="false" android:screenOrientation="portrait" />
+        <activity android:name=".LoveTruthActivity" android:exported="false" android:screenOrientation="portrait" />
+        <activity android:name=".LoveDareActivity" android:exported="false" android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

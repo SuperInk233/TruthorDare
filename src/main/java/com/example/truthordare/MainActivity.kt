@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     // 界面组件
     private lateinit var truthProgressText: TextView
     private lateinit var dareProgressText: TextView
+    private lateinit var loveModeButton: TextView  // 新增：心动模式入口
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         truthProgressText = findViewById(R.id.truthProgressText)
         dareProgressText = findViewById(R.id.dareProgressText)
+        loveModeButton = findViewById(R.id.loveModeButton)  // 新增
 
         // 更新进度显示
         updateProgress()
@@ -54,6 +56,12 @@ class MainActivity : AppCompatActivity() {
 
         questionManagerButton.setOnClickListener {
             val intent = Intent(this, QuestionManagerActivity::class.java)
+            startActivity(intent)
+        }
+
+        // 新增：心动模式入口
+        loveModeButton.setOnClickListener {
+            val intent = Intent(this, LoveMainActivity::class.java)
             startActivity(intent)
         }
     }

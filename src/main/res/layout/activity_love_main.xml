@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/morandi_bg"
+    android:background="#F0E0E6"
     android:orientation="vertical"
     android:padding="20dp"
     android:gravity="center_horizontal">
@@ -14,8 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="30dp"
-        android:text="真心话大冒险"
-        android:textColor="@color/text_primary"
+        android:text="心动模式"
+        android:textColor="#6B3A4F"
         android:textSize="36sp"
         android:textStyle="bold"
         android:fontFamily="sans-serif-light" />
@@ -26,7 +26,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_margin="10dp"
-        app:cardBackgroundColor="@color/morandi_primary"
+        app:cardBackgroundColor="#D4A0B0"
         app:cardCornerRadius="20dp"
         app:cardElevation="8dp"
         app:cardUseCompatPadding="true">
@@ -36,42 +36,40 @@
             android:layout_height="match_parent"
             android:padding="20dp">
 
-            <!-- 真心话标题 -->
             <TextView
-                android:id="@+id/truthTitle"
+                android:id="@+id/loveTruthTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:text="真心话"
-                android:textColor="@color/white"
+                android:textColor="#FFFFFF"
                 android:textSize="36sp"
                 android:textStyle="bold"
                 android:fontFamily="cursive" />
 
-            <!-- 已抽取题目情况 -->
             <TextView
-                android:id="@+id/truthProgressText"
+                android:id="@+id/loveTruthProgressText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/truthTitle"
+                android:layout_below="@id/loveTruthTitle"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="40dp"
                 android:text="0/100"
-                android:textColor="@color/white"
+                android:textColor="#FFFFFF"
                 android:textSize="13sp"
                 android:fontFamily="sans-serif-light" />
 
             <Button
-                android:id="@+id/truthButton"
+                android:id="@+id/loveTruthButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/rounded_button"
+                android:background="@drawable/btn_love_truth"
                 android:text="开始抽取"
-                android:textColor="@color/text_on_button"
+                android:textColor="#FFFFFF"
                 android:textSize="20sp" />
 
         </RelativeLayout>
@@ -83,7 +81,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_margin="10dp"
-        app:cardBackgroundColor="@color/morandi_secondary"
+        app:cardBackgroundColor="#B0A0C8"
         app:cardCornerRadius="20dp"
         app:cardElevation="8dp"
         app:cardUseCompatPadding="true">
@@ -93,9 +91,8 @@
             android:layout_height="match_parent"
             android:padding="20dp">
 
-            <!-- 大冒险标题 -->
             <TextView
-                android:id="@+id/dareTitle"
+                android:id="@+id/loveDareTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -103,51 +100,50 @@
                 android:fontFamily="cursive"
                 android:rotationY="1"
                 android:text="大冒险"
-                android:textColor="@color/white"
+                android:textColor="#FFFFFF"
                 android:textSize="36sp"
                 android:textStyle="bold" />
 
-            <!-- 已抽取题目情况 -->
             <TextView
-                android:id="@+id/dareProgressText"
+                android:id="@+id/loveDareProgressText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/dareTitle"
+                android:layout_below="@id/loveDareTitle"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="40dp"
                 android:text="0/100"
-                android:textColor="@color/white"
+                android:textColor="#FFFFFF"
                 android:textSize="13sp"
                 android:fontFamily="sans-serif-light" />
 
             <Button
-                android:id="@+id/dareButton"
+                android:id="@+id/loveDareButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/morandi_secondary"
+                android:background="@drawable/btn_love_dare"
                 android:text="开始抽取"
-                android:textColor="@color/white"
+                android:textColor="#FFFFFF"
                 android:textSize="20sp" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- 新增：心动模式按钮（放在历史记录按钮上方） -->
+    <!-- 返回普通模式按钮 -->
     <TextView
-        android:id="@+id/loveModeButton"
+        android:id="@+id/backToNormalBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="4dp"
-        android:text="💗"
-        android:textColor="#FFFFFF"
+        android:text="普通模式"
+        android:textColor="#6B3A4F"
         android:textSize="15sp"
         android:padding="10dp" />
 
-    <!-- 底部按钮区域（完全还原原始布局） -->
+    <!-- 底部按钮区域 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -157,33 +153,33 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/resetButton"
+            android:id="@+id/loveResetButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:backgroundTint="@color/morandi_tertiary"
+            android:background="@drawable/btn_love_secondary"
             android:text="重置游戏"
-            android:textColor="@color/white"
+            android:textColor="#FFFFFF"
             android:textSize="16sp" />
 
         <Button
-            android:id="@+id/historyButton"
+            android:id="@+id/loveHistoryButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:backgroundTint="@color/morandi_tertiary"
+            android:background="@drawable/btn_love_secondary"
             android:text="历史记录"
-            android:textColor="@color/white"
+            android:textColor="#FFFFFF"
             android:textSize="16sp" />
 
         <Button
-            android:id="@+id/questionManagerButton"
+            android:id="@+id/loveQuestionManagerButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:backgroundTint="@color/morandi_tertiary"
+            android:background="@drawable/btn_love_secondary"
             android:text="题库管理"
-            android:textColor="@color/white"
+            android:textColor="#FFFFFF"
             android:textSize="16sp" />
 
     </LinearLayout>

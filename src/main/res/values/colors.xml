@@ -27,4 +27,12 @@
     <color name="note_1">#FFF8E1</color>           <!-- 便签背景颜色 -->
     <color name="button_normal">#A8B8A8</color>    <!-- 按钮正常状态颜色 -->
     <color name="button_pressed">#8A9A8A</color>   <!-- 按钮按下状态颜色 -->
+
+    <!-- 心动模式 - 软暧昧粉紫调 -->
+    <color name="love_primary">#FF6B9D</color>        <!-- 玫粉主色 -->
+    <color name="love_accent">#C44DFF</color>         <!-- 紫 accent -->
+    <color name="love_bg_start">#4A1040</color>       <!-- 深紫红渐变起点 -->
+    <color name="love_bg_end">#1A0A20</color>         <!-- 近黑紫渐变终点 -->
+    <color name="love_card">#3A1540</color>           <!-- 卡片底色 -->
+    <color name="love_text_primary">#FFE4F0</color>   <!-- 浅粉白文字 -->
 </resources>

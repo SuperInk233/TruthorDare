@@ -403,4 +403,75 @@ object QuestionRepository {
         saveTruthQuestions(context, defaultTruthQuestions.toMutableList())
         saveDareQuestions(context, defaultDareQuestions.toMutableList())
     }
+    // ========== 心动模式题库 ==========
+    private const val KEY_LOVE_TRUTH_QUESTIONS = "love_truth_questions"
+    private const val KEY_LOVE_DARE_QUESTIONS = "love_dare_questions"
+
+    private val defaultLoveTruthQuestions = listOf(
+        "现在对面这个人，你第一眼注意到 TA 哪个部位最好看？",
+        "如果今晚必须和对面这个人约会一次，你选哪里？",
+        "你有过「明明很心动还要装淡定」的时刻吗？描述一下。"
+    )
+
+    private val defaultLoveDareQuestions = listOf(
+        "对对面这个人说一句你平时不敢说的夸赞，要具体到细节。",
+        "把你的手放在对面这个人的手腕上，测三秒脉搏，不许笑。",
+        "凑到对面这个人耳边，用只有 TA 能听见的声音叫一声随便什么昵称。"
+    )
+
+    fun getLoveTruthQuestions(context: Context): MutableList<String> {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val json = prefs.getString(KEY_LOVE_TRUTH_QUESTIONS, null)
+        return if (json == null) {
+            saveLoveTruthQuestions(context, defaultLoveTruthQuestions.toMutableList())
+            defaultLoveTruthQuestions.toMutableList()
+        } else {
+            Gson().fromJson(json, object : TypeToken<MutableList<String>>() {}.type)
+        }
+    }
+
+    fun saveLoveTruthQuestions(context: Context, questions: MutableList<String>) {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        prefs.edit { putString(KEY_LOVE_TRUTH_QUESTIONS, Gson().toJson(questions)) }
+    }
+
+    fun addLoveTruthQuestion(context: Context, question: String) {
+        val q = getLoveTruthQuestions(context)
+        q.add(question)
+        saveLoveTruthQuestions(context, q)
+    }
+
+    fun deleteLoveTruthQuestion(context: Context, question: String) {
+        val q = getLoveTruthQuestions(context)
+        q.remove(question)
+        saveLoveTruthQuestions(context, q)
+    }
+
+    fun getLoveDareQuestions(context: Context): MutableList<String> {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val json = prefs.getString(KEY_LOVE_DARE_QUESTIONS, null)
+        return if (json == null) {
+            saveLoveDareQuestions(context, defaultLoveDareQuestions.toMutableList())
+            defaultLoveDareQuestions.toMutableList()
+        } else {
+            Gson().fromJson(json, object : TypeToken<MutableList<String>>() {}.type)
+        }
+    }
+
+    fun saveLoveDareQuestions(context: Context, questions: MutableList<String>) {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        prefs.edit { putString(KEY_LOVE_DARE_QUESTIONS, Gson().toJson(questions)) }
+    }
+
+    fun addLoveDareQuestion(context: Context, question: String) {
+        val q = getLoveDareQuestions(context)
+        q.add(question)
+        saveLoveDareQuestions(context, q)
+    }
+
+    fun deleteLoveDareQuestion(context: Context, question: String) {
+        val q = getLoveDareQuestions(context)
+        q.remove(question)
+        saveLoveDareQuestions(context, q)
+    }
 }

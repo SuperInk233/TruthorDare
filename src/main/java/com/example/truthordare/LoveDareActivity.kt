@@ -48,7 +48,6 @@ class LoveDareActivity : AppCompatActivity() {
         backButton = findViewById(R.id.backButton)
         counterTextView = findViewById(R.id.counterTextView)
 
-        // ★★★★★ 从仓库获取题库，不强制重置 ★★★★★
         dareQuestions = QuestionRepository.getLoveDareQuestions(this)
 
         loadSavedState()

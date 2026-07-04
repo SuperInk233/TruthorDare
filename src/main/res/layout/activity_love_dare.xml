@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="🔥 心动·大冒险"
+            android:text="🔥大冒险"
             android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="#C71585" />

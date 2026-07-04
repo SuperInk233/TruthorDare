@@ -3,58 +3,92 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#4A1040"
-    android:gravity="center"
-    android:padding="24dp">
+    android:background="#FFF0F5"
+    android:gravity="center_horizontal">
 
-    <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="🔥 心动·大冒险"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#FFE4F0"
-        android:layout_marginBottom="30dp" />
-
-    <TextView
-        android:id="@+id/questionTextView"
+    <!-- 顶部标题栏 -->
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:gravity="center"
-        android:text="点击下方按钮开始"
-        android:textSize="18sp"
-        android:textColor="#FFE4F0"
-        android:background="#3A1540"
-        android:padding="16dp"
-        android:layout_marginBottom="20dp" />
+        android:layout_height="wrap_content"
+        android:padding="20dp">
 
+        <TextView
+            android:id="@+id/backButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="←"
+            android:textColor="#88000000"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="🔥 心动·大冒险"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#C71585" />
+
+    </RelativeLayout>
+
+    <!-- 便签区域 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:id="@+id/noteContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFE4F0"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="40dp">
+
+            <TextView
+                android:id="@+id/questionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="点击抽取题目"
+                android:textColor="#333333"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-light"
+                android:lineSpacingExtra="12sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/counterTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="0/0"
+            android:textColor="#C71585"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <!-- 抽取按钮 -->
     <Button
         android:id="@+id/extractButton"
         android:layout_width="200dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="40dp"
         android:text="抽取大冒险"
         android:textSize="16sp"
         android:textColor="#FFFFFF"
-        android:background="#C44DFF"
-        android:layout_marginBottom="20dp" />
+        android:background="@drawable/rounded_button" />
 
-    <TextView
-        android:id="@+id/counterTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="剩余：0 题"
-        android:textSize="14sp"
-        android:textColor="#FFE4F0"
-        android:layout_marginBottom="10dp" />
-
-    <TextView
-        android:id="@+id/backToNormalBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="普通模式"
-        android:textSize="14sp"
-        android:textColor="#FFFFFF"
-        android:padding="10dp"
-        android:layout_marginTop="12dp" />
 </LinearLayout>
